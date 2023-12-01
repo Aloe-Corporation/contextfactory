@@ -2,6 +2,8 @@
 
 The Context Factory provides a straightforward method for testing Gin Handlers by generating a test context.
 
+This project has been developped by the [Aloe](https://www.aloe-corp.com/) team and is now open source.
+
 ![tests](https://github.com/Aloe-Corporation/contextfactory/actions/workflows/go.yml/badge.svg)
 [![Go Reference](https://pkg.go.dev/badge/github.com/Aloe-Corporation/contextfactory.svg)](https://pkg.go.dev/github.com/Aloe-Corporation/contextfactory)
 
@@ -32,3 +34,11 @@ Use the factory method to create a `gin.Context` and a `httptest.ResponseRecorde
         assert.Equal(t, http.StatusOK, writer.Code)
     }
 ```
+
+## Contributing
+
+This section will be added soon.
+
+## License
+
+Client is released under the MIT license. See [LICENSE.txt](./LICENSE).
