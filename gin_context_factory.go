@@ -16,10 +16,12 @@ type ContextOptions struct {
 	PathParams  gin.Params
 	QueryParams map[string]string
 	Headers     map[string]string
-	ContextVar  map[string]interface{}
+	ContextVars map[string]interface{}
 }
 
-// BuildGinTestContext is a factory method to build test contexts ONLY and obtain a *httptest.ResponseRecorder.
+// BuildGinTestContext creates a test context for Gin framework with the provided
+// ContextOptions. It returns a *gin.Context and *httptest.ResponseRecorder, which
+// can be used to simulate HTTP requests and test Gin handlers.
 func BuildGinTestContext(opt ContextOptions) (*gin.Context, *httptest.ResponseRecorder) {
 	writer := httptest.NewRecorder()
 	context, _ := gin.CreateTestContext(writer)
@@ -27,10 +29,10 @@ func BuildGinTestContext(opt ContextOptions) (*gin.Context, *httptest.ResponseRe
 	// Create the request
 	context.Request = httptest.NewRequest(opt.Method, opt.Path, opt.Body)
 
-	// Put path param in the request
+	// Put path params in the request
 	context.Params = opt.PathParams
 
-	// Put query param in the request
+	// Put query params in the request
 	values := url.Values{}
 	for k, v := range opt.QueryParams {
 		values[k] = []string{v}
@@ -42,8 +44,8 @@ func BuildGinTestContext(opt ContextOptions) (*gin.Context, *httptest.ResponseRe
 		context.Request.Header.Set(header, value)
 	}
 
-	// Put context var into the context
-	for key, value := range opt.ContextVar {
+	// Put context vars into the context
+	for key, value := range opt.ContextVars {
 		context.Set(key, value)
 	}
 

@@ -27,7 +27,7 @@ var buildGinTestContextTestCases = []ContextOptions{
 		Headers: map[string]string{
 			"Content-Type": "application/json",
 		},
-		ContextVar: map[string]interface{}{
+		ContextVars: map[string]interface{}{
 			"test": "test",
 		},
 	},
@@ -47,7 +47,7 @@ var buildGinTestContextTestCases = []ContextOptions{
 		Headers: map[string]string{
 			"header_test_key": "header_test_value",
 		},
-		ContextVar: map[string]interface{}{
+		ContextVars: map[string]interface{}{
 			"test": "test",
 		},
 	},
@@ -74,7 +74,7 @@ func TestBuildGinTestContext(t *testing.T) {
 			for query_key, query_value := range testCase.QueryParams {
 				assert.Equal(t, query_value, req.URL.Query()[query_key][0])
 			}
-			for var_key, var_value := range testCase.ContextVar {
+			for var_key, var_value := range testCase.ContextVars {
 				assert.Equal(t, var_value, c.GetString(var_key))
 			}
 		})
