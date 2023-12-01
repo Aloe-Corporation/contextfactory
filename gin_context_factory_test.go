@@ -68,14 +68,14 @@ func TestBuildGinTestContext(t *testing.T) {
 				assert.Equal(t, http.NoBody, req.Body)
 			}
 
-			for header_key, header_value := range testCase.Headers {
-				assert.Equal(t, header_value, req.Header.Get(header_key))
+			for key, value := range testCase.Headers {
+				assert.Equal(t, value, req.Header.Get(key))
 			}
-			for query_key, query_value := range testCase.QueryParams {
-				assert.Equal(t, query_value, req.URL.Query()[query_key][0])
+			for key, value := range testCase.QueryParams {
+				assert.Equal(t, value, req.URL.Query()[key][0])
 			}
-			for var_key, var_value := range testCase.ContextVars {
-				assert.Equal(t, var_value, c.GetString(var_key))
+			for key, value := range testCase.ContextVars {
+				assert.Equal(t, value, c.GetString(key))
 			}
 		})
 	}
