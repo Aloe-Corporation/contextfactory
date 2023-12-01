@@ -14,6 +14,22 @@ The module provides:
 - A simple method to create `gin.Context`
 - An easy way to test your `gin.Handlers`
 
+## Concept
+
+Emulate an API call by populating a `gin.Context` thanks to the `ContextOptions` structure:
+
+```go
+type ContextOptions struct {
+	Method      string
+	Path        string
+	Body        io.Reader
+	PathParams  gin.Params
+	QueryParams map[string]string
+	Headers     map[string]string
+	ContextVars map[string]interface{}
+}
+```
+
 ## Usage
 
 Use the factory method to create a `gin.Context` and a `httptest.ResponseRecorder` inside a unit test:
